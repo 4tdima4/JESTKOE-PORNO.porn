@@ -4,9 +4,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const progressBar = document.getElementById('progressBar');
     const timeDisplay = document.getElementById('timeDisplay');
 
+    // Auto-play on load (muted for autoplay policy)
+    if (video && video.readyState >= 2) {
+        video.play().catch(() => {
+            console.log('Автозапуск отключён браузером. Нажмите Play вручную.');
+        });
+    }
+
     // Play/Pause Toggle
     playBtn.addEventListener('click', () => {
-        if (video.paused) {
+        if (video.paused || video.ended) {
             video.play();
             playBtn.textContent = '⏸️';
         } else {
@@ -17,10 +24,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Update Progress Bar & Time Display
     video.addEventListener('timeupdate', () => {
-        const progressPercent = (video.currentTime / video.duration) * 100;
-        progressBar.style.width = `${progressPercent}%`;
-        
-        timeDisplay.textContent = `⏱️ ${formatTime(video.currentTime)} / ${formatTime(video.duration)}`;
+        if (video.duration) {
+            const progressPercent = (video.currentTime / video.duration) * 100;
+            progressBar.style.width = `${progressPercent}%`;
+            
+            timeDisplay.textContent = `⏱️ ${formatTime(video.currentTime)} / ${formatTime(video.duration)}`;
+        }
     });
 
     // Format Time Helper
@@ -38,6 +47,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (query) {
             alert(`Вы ищете: "${query}" 🔍`);
             // Здесь можно добавить поиск по API или фильтровать видео
+        } else {
+            e.target.querySelector('.search-input').focus();
         }
     });
 
@@ -49,6 +60,8 @@ document.addEventListener('DOMContentLoaded', () => {
         if (email) {
             alert(`Вы успешно подписались с ${email}! 🔔`);
             e.target.reset();
+        } else {
+            e.target.querySelector('.subscribe-input').focus();
         }
     });
 
@@ -63,6 +76,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
+    // Video Hover Preview Effect
+    video.addEventListener('mouseenter', () => {
+        video.style.transform = 'scale(1.02)';
+    });
+
+    video.addEventListener('mouseleave', () => {
+        video.style.transform = 'scale(1)';
+    });
+
     // Console Log for Debugging
-    console.log('🎬 PornoHub Clone Loaded Successfully!');
+    console.log('🎬 ЖЁТСКОЕ ПОРНО Загружено Успешно!');
+    
+    // Show Welcome Message
+    setTimeout(() => {
+        alert('Добро пожаловать на ЖЁТСКОЕ ПОРНО! 🎉');
+    }, 1500);
 });
