@@ -3,159 +3,339 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>ЖЁТСКОЕ ПОРНО — Лучшие Видео</title>
+    <title>ЖЁТСКОЕ ПОРНО — Premium Experience</title>
     <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <!-- Header -->
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="spinner"></div>
+        <p>Loading ЖёТское Порно...</p>
+    </div>
+
+    <!-- Header with Navigation -->
     <header class="main-header">
-        <div class="logo-container">
-            <a href="#" class="logo">🔥 ЖЁТСКОЕ ПОРНО 🔥</a>
-        </div>
-        <nav class="search-nav">
-            <form id="searchForm" class="search-form">
-                <input type="text" placeholder="Поиск видео..." class="search-input" />
-                <button type="submit" class="search-btn">🔍</button>
-            </form>
+        <nav class="top-nav">
+            <a href="#" class="logo">🔥 ЖЁТСКОЕ ПОРНО</a>
+            
+            <ul class="nav-menu">
+                <li><a href="#">Главная</a></li>
+                <li><a href="#">Категории</a></li>
+                <li><a href="#">Топ-100</a></li>
+                <li><a href="#">Новинки</a></li>
+            </ul>
+
+            <div class="header-actions">
+                <button id="themeToggle" class="icon-btn">🌙</button>
+                <button class="icon-btn">❤️</button>
+                <button class="icon-btn">🔔</button>
+                <a href="#" class="profile-link">👤 User</a>
+            </div>
         </nav>
+
+        <!-- Search Bar -->
+        <form id="searchForm" class="search-container">
+            <input type="text" placeholder="Поиск видео..." class="search-input" />
+            <button type="submit" class="search-btn">🔍</button>
+            <select class="filter-select">
+                <option value="">Все жанры</option>
+                <option value="hd">HD</option>
+                <option value="4k">4K</option>
+                <option value="premiere">Премиум</option>
+            </select>
+        </form>
+
+        <!-- User Menu Dropdown -->
+        <div class="user-dropdown" id="userDropdown">
+            <ul>
+                <li><a href="#">👤 Мой профиль</a></li>
+                <li><a href="#">❤️ Избранное</a></li>
+                <li><a href="#">⚙️ Настройки</a></li>
+                <li><a href="#" class="logout">🔓 Выйти</a></li>
+            </ul>
+        </div>
     </header>
 
     <!-- Main Content -->
     <main class="content-wrapper">
-        <div class="video-container">
-            <h1 class="video-title">🔥 Горячее Видео: горничная ебётся с сатаной 🔥</h1>
-            
-            <div class="video-wrapper">
-                <video 
-                    id="mainVideo" 
-                    controls 
-                    poster="poster.jpg" 
-                    preload="auto"
-                    autoplay
-                    loop
-                    playsinline
-                    muted
-                >
-                    <source src="porno.mp4" type="video/mp4" />
-                    Ваш браузер не поддерживает видео.
-                </video>
+        
+        <!-- Hero Section with Featured Video -->
+        <section class="hero-section">
+            <div class="video-container">
+                <h1 class="video-title">🔥 Горячее Видео: porno.mp4</h1>
+                
+                <div class="video-wrapper">
+                    <video 
+                        id="mainVideo" 
+                        controls 
+                        poster="poster.jpg" 
+                        preload="auto"
+                        autoplay
+                        loop
+                        playsinline
+                        muted
+                    >
+                        <source src="porno.mp4" type="video/mp4" />
+                        Ваш браузер не поддерживает видео.
+                    </video>
 
-                <!-- Video Controls -->
-                <div class="video-controls">
-                    <button id="playBtn" class="control-btn">▶️</button>
-                    <span id="progressBar" class="progress-bar"></span>
-                    <span id="timeDisplay" class="time-display">0:00 / 0:00</span>
+                    <!-- Video Controls Overlay -->
+                    <div class="controls-overlay">
+                        <button id="playBtn" class="control-btn primary">▶️</button>
+                        <span id="progressBar" class="progress-bar"></span>
+                        <span id="timeDisplay" class="time-display">0:00 / 0:00</span>
+                        
+                        <!-- Quality Selector -->
+                        <div class="quality-selector">
+                            <select id="qualitySelect">
+                                <option value="1080p">1080p HD</option>
+                                <option value="720p">720p</option>
+                                <option value="4k">4K Ultra</option>
+                            </select>
+                        </div>
+
+                        <!-- Subtitles Toggle -->
+                        <button id="subtitleBtn" class="control-btn secondary">📝</button>
+                    </div>
+
+                    <!-- Video Info Cards -->
+                    <div class="video-info-cards">
+                        <div class="info-card views-card">
+                            <span class="icon">👁️</span>
+                            <p><strong>1,234,567</strong> просмотров</p>
+                        </div>
+                        <div class="info-card date-card">
+                            <span class="icon">📅</span>
+                            <p>Загружено: 10 минут назад</p>
+                        </div>
+                        <div class="info-card rating-card">
+                            <span class="icon">⭐</span>
+                            <p><strong>4.9/5</strong> рейтинг</p>
+                        </div>
+                    </div>
+
+                    <!-- Description Section -->
+                    <div class="video-description">
+                        <h3>Описание видео</h3>
+                        <p>Это лучшее видео на ЖЁТСКОЕ ПОРНО! Наслаждайтесь просмотром в полном качестве с невероятным звуком и визуальными эффектами.</p>
+                        
+                        <!-- Tags -->
+                        <div class="tags-section">
+                            <span class="section-title">Теги:</span>
+                            <span class="tag">#hd</span>
+                            <span class="tag">#video</span>
+                            <span class="tag">#hot</span>
+                            <span class="tag">#best</span>
+                            <span class="tag">#premium</span>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="action-buttons">
+                            <button class="btn btn-primary">❤️ В избранное</button>
+                            <button class="btn btn-secondary">📤 Поделиться</button>
+                            <button class="btn btn-tertiary">💬 1,234 Комментария</button>
+                        </div>
+                    </div>
                 </div>
 
-                <!-- Video Info -->
-                <div class="video-info">
-                    <p class="views-count">👁️ <strong>1,234,567 просмотров</strong></p>
-                    <p class="upload-date">📅 Загружено: 10 минут назад</p>
-                </div>
-
-                <!-- Description -->
-                <div class="video-description">
-                    <h3>Описание видео</h3>
-                    <p>Это лучшее видео на ЖЁТСКОЕ ПОРНО! Наслаждайтесь просмотром в полном качестве.</p>
-                </div>
-
-                <!-- Tags Section -->
-                <div class="tags-section">
-                    <span class="section-title">Теги:</span>
-                    <span class="tag">#hd</span>
-                    <span class="tag">#video</span>
-                    <span class="tag">#hot</span>
-                    <span class="tag">#best</span>
-                </div>
-
-                <!-- Related Videos -->
+                <!-- Related Videos Section -->
                 <section class="related-videos">
                     <h2 class="section-heading">Похожие видео 🔥</h2>
                     
                     <article class="video-card">
                         <div class="thumbnail-placeholder">🎬</div>
-                        <h3 class="card-title">Related Video 1</h3>
-                        <p class="card-meta">HD • 5:42 • 340K просмотров</p>
+                        <div class="card-content">
+                            <h3 class="card-title">Related Video 1 — Premium Quality</h3>
+                            <p class="card-meta">HD • 5:42 • 340K просмотров</p>
+                            <div class="card-actions">
+                                <button class="btn btn-small">▶️ Смотреть</button>
+                                <span class="views-badge">👁️ 340K</span>
+                            </div>
+                        </div>
                     </article>
 
                     <article class="video-card">
                         <div class="thumbnail-placeholder">🎬</div>
-                        <h3 class="card-title">Related Video 2</h3>
-                        <p class="card-meta">HD • 8:15 • 290K просмотров</p>
+                        <div class="card-content">
+                            <h3 class="card-title">Related Video 2 — Ultra HD Experience</h3>
+                            <p class="card-meta">4K • 8:15 • 290K просмотров</p>
+                            <div class="card-actions">
+                                <button class="btn btn-small">▶️ Смотреть</button>
+                                <span class="views-badge">👁️ 290K</span>
+                            </div>
+                        </div>
                     </article>
 
                     <article class="video-card">
                         <div class="thumbnail-placeholder">🎬</div>
-                        <h3 class="card-title">Related Video 3</h3>
-                        <p class="card-meta">HD • 12:05 • 450K просмотров</p>
+                        <div class="card-content">
+                            <h3 class="card-title">Related Video 3 — Premium Selection</h3>
+                            <p class="card-meta">HD • 12:05 • 450K просмотров</p>
+                            <div class="card-actions">
+                                <button class="btn btn-small">▶️ Смотреть</button>
+                                <span class="views-badge">👁️ 450K</span>
+                            </div>
+                        </div>
                     </article>
 
                     <a href="#" class="see-more-btn">Смотреть ещё ➡️</a>
                 </section>
             </div>
-        </div>
 
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <h3 class="sidebar-title">Популярное 🔥</h3>
-            
-            <ul class="popular-list">
-                <li class="popular-item">
-                    <span class="rank">#1</span>
-                    <a href="#">Top Video 2024</a>
-                    <p class="views">👁️ 5.2M просмотров</p>
-                </li>
+            <!-- Sidebar with Multiple Sections -->
+            <aside class="sidebar">
+                
+                <!-- Popular Section -->
+                <div class="sidebar-section">
+                    <h3 class="sidebar-title">Популярное 🔥</h3>
+                    
+                    <ul class="popular-list">
+                        <li class="popular-item">
+                            <span class="rank">#1</span>
+                            <a href="#">Top Video 2024</a>
+                            <p class="views">👁️ 5.2M просмотров</p>
+                        </li>
 
-                <li class="popular-item">
-                    <span class="rank">#2</span>
-                    <a href="#">Best of the Year</a>
-                    <p class="views">👁️ 3.8M просмотров</p>
-                </li>
+                        <li class="popular-item">
+                            <span class="rank">#2</span>
+                            <a href="#">Best of the Year</a>
+                            <p class="views">👁️ 3.8M просмотров</p>
+                        </li>
 
-                <li class="popular-item">
-                    <span class="rank">#3</span>
-                    <a href="#">Trending Now</a>
-                    <p class="views">👁️ 2.1M просмотров</p>
-                </li>
-            </ul>
+                        <li class="popular-item">
+                            <span class="rank">#3</span>
+                            <a href="#">Trending Now</a>
+                            <p class="views">👁️ 2.1M просмотров</p>
+                        </li>
 
-            <!-- Ad Placeholder -->
-            <div class="ad-placeholder">
-                <h4>Реклама 📢</h4>
-                <p>Здесь может быть баннер</p>
-            </div>
+                        <li class="popular-item">
+                            <span class="rank">#4</span>
+                            <a href="#">Hidden Gems</a>
+                            <p class="views">👁️ 1.9M просмотров</p>
+                        </li>
 
-            <!-- Subscribe Section -->
-            <div class="subscribe-box">
-                <h3>Подписаться 🔔</h3>
-                <form id="subscribeForm" class="subscribe-form">
-                    <input type="email" placeholder="Ваш Email" class="subscribe-input" />
-                    <button type="submit" class="subscribe-btn">Подписаться</button>
-                </form>
-            </div>
+                        <li class="popular-item">
+                            <span class="rank">#5</span>
+                            <a href="#">Weekend Vibes</a>
+                            <p class="views">👁️ 1.5M просмотров</p>
+                        </li>
+                    </ul>
 
-            <!-- Categories -->
-            <div class="categories-box">
-                <h3>Категории 📂</h3>
-                <ul class="category-list">
-                    <li><a href="#">🔥 Горячее</a></li>
-                    <li><a href="#">💎 Премиум</a></li>
-                    <li><a href="#">🌙 Ночное</a></li>
-                    <li><a href="#">⚡ Новинки</a></li>
-                </ul>
-            </div>
-        </aside>
+                    <!-- Ad Banner -->
+                    <div class="ad-banner">
+                        <h4>Реклама 📢</h4>
+                        <p>Здесь может быть премиум баннер</p>
+                    </div>
+
+                    <!-- Subscribe Section -->
+                    <div class="subscribe-box">
+                        <h3>Подписаться 🔔</h3>
+                        <form id="subscribeForm" class="subscribe-form">
+                            <input type="email" placeholder="Ваш Email" class="subscribe-input" />
+                            <button type="submit" class="btn btn-primary">Подписаться</button>
+                        </form>
+                    </div>
+
+                    <!-- Categories Section -->
+                    <div class="categories-box">
+                        <h3>Категории 📂</h3>
+                        <ul class="category-list">
+                            <li><a href="#">🔥 Горячее</a></li>
+                            <li><a href="#">💎 Премиум</a></li>
+                            <li><a href="#">🌙 Ночное</a></li>
+                            <li><a href="#">⚡ Новинки</a></li>
+                            <li><a href="#">💫 Эксклюзив</a></li>
+                        </ul>
+                    </div>
+
+                    <!-- Trending Tags -->
+                    <div class="trending-tags">
+                        <h3>Тренды 📈</h3>
+                        <div class="tags-grid">
+                            <span class="tag">#hd</span>
+                            <span class="tag">#4k</span>
+                            <span class="tag">#premium</span>
+                            <span class="tag">#trending</span>
+                        </div>
+                    </div>
+
+                    <!-- Newsletter Section -->
+                    <div class="newsletter-box">
+                        <h3>Рассылка 📧</h3>
+                        <p>Получайте лучшие видео на почту!</p>
+                        <form id="newsletterForm" class="newsletter-form">
+                            <input type="email" placeholder="Email" class="newsletter-input" />
+                            <button type="submit" class="btn btn-secondary">Отправить</button>
+                        </form>
+                    </div>
+
+                    <!-- Premium Upsell -->
+                    <div class="premium-upsell">
+                        <h3>Премиум 🔥</h3>
+                        <p>Получите доступ к эксклюзивному контенту!</p>
+                        <button class="btn btn-primary premium-btn">👑 Станьте VIP</button>
+                    </div>
+
+                </div>
+
+            </aside>
+        </section>
+
     </main>
 
-    <!-- Footer -->
+    <!-- Footer with Multiple Links -->
     <footer class="site-footer">
-        <p>&copy; 2024 <strong>ЖЁТСКОЕ ПОРНО</strong>. Все права защищены.</p>
-        <nav class="footer-links">
-            <a href="#">О нас</a> | 
-            <a href="#">Контакты</a> | 
-            <a href="#">Правила</a> | 
-            <a href="#">Реклама</a>
+        <div class="footer-top">
+            <h2 class="footer-logo">🔥 ЖЁТСКОЕ ПОРНО</h2>
+            <p>&copy; 2024. Все права защищены.</p>
+        </div>
+
+        <nav class="footer-navs">
+            <div class="footer-col">
+                <h4>О нас</h4>
+                <ul>
+                    <li><a href="#">История</a></li>
+                    <li><a href="#">Команда</a></li>
+                    <li><a href="#">Карьера</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Помощь</h4>
+                <ul>
+                    <li><a href="#">Центр поддержки</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Контакты</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Правила</h4>
+                <ul>
+                    <li><a href="#">Условия использования</a></li>
+                    <li><a href="#">Конфиденциальность</a></li>
+                    <li><a href="#">Реклама</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-col">
+                <h4>Соцсети</h4>
+                <ul>
+                    <li><a href="#">YouTube</a></li>
+                    <li><a href="#">Telegram</a></li>
+                    <li><a href="#">VKontakte</a></li>
+                </ul>
+            </div>
         </nav>
+
+        <!-- Social Icons -->
+        <div class="social-icons">
+            <a href="#" aria-label="YouTube">📺</a>
+            <a href="#" aria-label="Telegram">✈️</a>
+            <a href="#" aria-label="VK">💬</a>
+            <a href="#" aria-label="Instagram">🌸</a>
+        </div>
+
     </footer>
 
     <!-- JavaScript -->
