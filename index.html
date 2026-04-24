@@ -68,7 +68,8 @@
                     <video 
                         id="mainVideo" 
                         controls 
-                        poster="poster.jpg" 
+                        <!-- ИСПРАВЛЕНИЕ: вместо несуществующего poster.jpg используем прозрачный плейсхолдер -->
+                        poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='360'%3E%3Crect width='640' height='360' fill='%23000'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='20'%3EЖЁТСКОЕ ПОРНО%3C/text%3E%3C/svg%3E"
                         preload="auto"
                         autoplay
                         loop
@@ -340,5 +341,26 @@
 
     <!-- JavaScript -->
     <script src="scripts.js"></script>
+    
+    <!-- ИСПРАВЛЕНИЕ: гарантированное скрытие прелоадера -->
+    <script>
+        (function() {
+            var preloader = document.getElementById('preloader');
+            if (!preloader) return;
+
+            // Скрываем прелоадер после полной загрузки страницы (включая изображения, стили и т.д.)
+            window.addEventListener('load', function() {
+                preloader.style.display = 'none';
+            });
+
+            // Страховочный таймаут: если событие load по какой-то причине не сработало,
+            // прелоадер исчезнет через 5 секунд
+            setTimeout(function() {
+                if (preloader.style.display !== 'none') {
+                    preloader.style.display = 'none';
+                }
+            }, 5000);
+        })();
+    </script>
 </body>
 </html>
