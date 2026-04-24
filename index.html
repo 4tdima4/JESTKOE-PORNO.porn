@@ -4,7 +4,869 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>ЖЁТСКОЕ ПОРНО — Premium Experience</title>
-    <link rel="stylesheet" href="styles.css" />
+    <!-- Все стили теперь встроены прямо сюда -->
+    <style>
+        /* =========================================
+           RESET & BASE STYLES
+           ========================================= */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+            background-color: #0a0a0a; /* Deep Black */
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        ::-webkit-scrollbar {
+            width: 12px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #ff6b00 0%, #cc5200 100%);
+            border-radius: 8px;
+        }
+
+        /* =========================================
+           PRELOADER
+           ========================================= */
+        #preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+
+        #preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid #333;
+            border-top-color: #ff6b00;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        #preloader p {
+            color: #ff6b00;
+            font-size: 1.2rem;
+            margin-top: 1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        /* =========================================
+           HEADER & NAVIGATION
+           ========================================= */
+        .main-header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+            border-bottom: 2px solid #ff6b00;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.5);
+        }
+
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #ff6b00;
+            text-decoration: none;
+            letter-spacing: 3px;
+            transition: transform 0.3s ease, text-shadow 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            text-shadow: 2px 2px 4px rgba(255,107,0,0.5);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu a {
+            color: #cccccc;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease, background-color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: #ff6b00;
+            background-color: rgba(255, 107, 0, 0.1);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .icon-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: transparent;
+            color: #ff6b00;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            transition: all 0.3s ease, transform 0.3s ease;
+        }
+
+        .icon-btn:hover {
+            background-color: rgba(255, 107, 0, 0.2);
+            transform: scale(1.1) rotate(10deg);
+        }
+
+        .profile-link {
+            color: #ff6b00;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem;
+            border-radius: 8px;
+            transition: all 0.3s ease, background-color 0.3s ease;
+        }
+
+        .profile-link:hover {
+            color: #fff;
+            background-color: rgba(255, 107, 0, 0.1);
+        }
+
+        .user-dropdown {
+            position: absolute;
+            top: 100%;
+            right: 3rem;
+            width: 280px;
+            background-color: #1a1a1a;
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6);
+            padding: 1rem;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .user-dropdown.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .user-dropdown ul {
+            list-style: none;
+        }
+
+        .user-dropdown li a {
+            display: block;
+            color: #cccccc;
+            text-decoration: none;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            transition: all 0.3s ease, background-color 0.3s ease;
+        }
+
+        .user-dropdown li a:hover {
+            color: #ff6b00;
+            background-color: rgba(255, 107, 0, 0.1);
+        }
+
+        /* =========================================
+           SEARCH CONTAINER & FILTERS
+           ========================================= */
+        .search-container {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 2rem;
+            background-color: rgba(255, 107, 0, 0.05);
+        }
+
+        .search-input {
+            width: 350px;
+            height: 48px;
+            border-radius: 25px;
+            border: 2px solid #ff6b00;
+            background-color: rgba(255, 107, 0, 0.1);
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            transition: all 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #ff6b00;
+            box-shadow: 0 4px 20px rgba(255, 107, 0, 0.4);
+        }
+
+        .search-btn {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #ff6b00;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1.3rem;
+            transition: all 0.3s ease, transform 0.3s ease;
+        }
+
+        .search-btn:hover {
+            background-color: #cc5200;
+            transform: scale(1.1);
+        }
+
+        .filter-select {
+            height: 48px;
+            border-radius: 25px;
+            border: 2px solid #ff6b00;
+            background-color: rgba(255, 107, 0, 0.1);
+            color: #fff;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .filter-select:focus {
+            outline: none;
+            box-shadow: 0 4px 20px rgba(255, 107, 0, 0.4);
+        }
+
+        /* =========================================
+           MAIN CONTENT & HERO SECTION
+           ========================================= */
+        .content-wrapper {
+            display: flex;
+            gap: 3rem;
+            max-width: 1600px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+
+        .hero-section {
+            width: 100%;
+        }
+
+        .video-container {
+            flex: 2.5;
+        }
+
+        .video-title {
+            font-size: 3rem;
+            color: #ff6b00;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 8px rgba(255, 107, 0, 0.4);
+        }
+
+        .video-wrapper {
+            position: relative;
+            background-color: #0a0a0a;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.7);
+        }
+
+        .video-wrapper video {
+            width: 100%;
+            max-width: 1080px;
+            border-radius: 20px;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.6);
+        }
+
+        .controls-overlay {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            background-color: rgba(0,0,0,0.7);
+            padding: 1rem 2rem;
+            border-radius: 25px;
+        }
+
+        .control-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: #ff6b00;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1.3rem;
+            transition: all 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .control-btn:hover {
+            background-color: #cc5200;
+            transform: scale(1.1);
+            box-shadow: 0 8px 25px rgba(255, 107, 0, 0.4);
+        }
+
+        .control-btn.secondary {
+            background-color: transparent;
+            border: 2px solid #ff6b00;
+        }
+
+        .control-btn.secondary:hover {
+            background-color: #ff6b00;
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 8px;
+            background-color: rgba(255, 107, 0, 0.3);
+            border-radius: 4px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-bar::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            height: 100%;
+            background-color: #ff6b00;
+            width: 50%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .time-display {
+            color: #ff6b00;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .quality-selector, .subtitle-btn {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            background-color: rgba(255, 107, 0, 0.2);
+            color: #ff6b00;
+            border: none;
+            cursor: pointer;
+        }
+
+        .quality-selector:focus {
+            outline: none;
+            box-shadow: 0 4px 15px rgba(255, 107, 0, 0.3);
+        }
+
+        .video-info-cards {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .info-card {
+            background-color: rgba(26, 26, 26, 0.8);
+            padding: 1rem 1.5rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .info-card .icon {
+            font-size: 1.8rem;
+        }
+
+        .video-description h3 {
+            font-size: 1.6rem;
+            margin-bottom: 0.75rem;
+            color: #ff6b00;
+        }
+
+        .tags-section {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .section-title {
+            font-weight: bold;
+            color: #ff6b00;
+        }
+
+        .tag {
+            background-color: rgba(255, 107, 0, 0.15);
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.95rem;
+            color: #ff6b00;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .btn {
+            padding: 0.7rem 1.5rem;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .btn-primary {
+            background-color: #ff6b00;
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #cc5200;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 107, 0, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: #ff6b00;
+            border: 2px solid #ff6b00;
+        }
+
+        .btn-secondary:hover {
+            background-color: #ff6b00;
+            color: white;
+        }
+
+        .btn-tertiary {
+            background-color: rgba(255, 107, 0, 0.1);
+            color: #ff6b00;
+            border: none;
+        }
+
+        .btn-small {
+            padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+        }
+
+        .views-badge {
+            background-color: rgba(255, 107, 0, 0.3);
+            color: #ff6b00;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+
+        .related-videos {
+            margin-top: 3.5rem;
+        }
+
+        .section-heading {
+            color: #ff6b00;
+            font-size: 2.2rem;
+            margin-bottom: 1.8rem;
+        }
+
+        .video-card {
+            display: flex;
+            gap: 1.5rem;
+            background-color: #1a1a1a;
+            padding: 1.5rem;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+            cursor: pointer; /* добавлено для интерактивности */
+        }
+
+        .video-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(255, 107, 0, 0.3);
+            background-color: #2a2a2e;
+        }
+
+        .thumbnail-placeholder {
+            width: 200px;
+            height: 112px;
+            background: linear-gradient(135deg, #ff6b00 0%, #cc5200 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+        }
+
+        .card-content {
+            flex: 1;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            color: #ff6b00;
+            margin-bottom: 0.3rem;
+        }
+
+        .card-meta {
+            color: #aaa;
+            font-size: 0.95rem;
+            margin-bottom: 0.8rem;
+        }
+
+        .card-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .see-more-btn {
+            display: inline-block;
+            color: #ff6b00;
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.7rem 1.2rem;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+        }
+
+        .see-more-btn:hover {
+            background-color: #ff6b00;
+            color: white;
+        }
+
+        /* =========================================
+           SIDEBAR STYLES (COMPLETE)
+           ========================================= */
+        .sidebar {
+            flex: 1;
+            max-width: 380px;
+        }
+
+        .sidebar-section {
+            background-color: #1a1a1a;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .sidebar-title {
+            color: #ff6b00;
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .popular-list {
+            list-style: none;
+        }
+
+        .popular-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 1rem 0;
+            border-bottom: 2px solid #3a3a4e;
+            transition: padding-left 0.3s ease, background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .popular-item:hover {
+            padding-left: 1.5rem;
+            background-color: rgba(255, 107, 0, 0.1);
+        }
+
+        .popular-item .rank {
+            background-color: #ff6b00;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+
+        .sidebar a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .sidebar a:hover {
+            color: #ff6b00;
+        }
+
+        .ad-banner, .subscribe-box, .categories-box, .newsletter-box, .premium-upsell {
+            background-color: #1a1a1a;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-top: 2rem;
+        }
+
+        .subscribe-form input, .newsletter-form input {
+            width: 100%;
+            padding: 0.7rem;
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            border: none;
+            background-color: rgba(255, 107, 0, 0.1);
+        }
+
+        .subscribe-btn, .premium-btn {
+            width: 100%;
+            background-color: #ff6b00;
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .category-list li {
+            padding: 0.6rem 0;
+            border-bottom: 1px solid #3a3a4e;
+        }
+
+        .trending-tags .tags-grid {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        /* =========================================
+           FOOTER (COMPLETE)
+           ========================================= */
+        .site-footer {
+            background-color: #0d0d15;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+            border-top: 3px solid #ff6b00;
+        }
+
+        .footer-top {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .footer-logo {
+            font-size: 2.5rem;
+            color: #ff6b00;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-navs {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+        }
+
+        .footer-col h4 {
+            color: #ff6b00;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col li a {
+            display: block;
+            color: #cccccc;
+            text-decoration: none;
+            padding: 0.4rem 0;
+            transition: all 0.3s ease, color 0.3s ease;
+        }
+
+        .footer-col li a:hover {
+            color: #ff6b00;
+            transform: translateX(5px);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        .social-icons a {
+            font-size: 2rem;
+            color: #ff6b00;
+            transition: all 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: white;
+            transform: scale(1.2) rotate(10deg);
+        }
+
+        /* =========================================
+           RESPONSIVE DESIGN (COMPLETE)
+           ========================================= */
+        @media (max-width: 1400px) {
+            .content-wrapper {
+                flex-wrap: wrap;
+            }
+            
+            .sidebar {
+                max-width: 320px;
+            }
+        }
+
+        @media (max-width: 1100px) {
+            .top-nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-menu {
+                gap: 1rem;
+            }
+            
+            .search-input {
+                width: 250px;
+            }
+        }
+
+        @media (max-width: 900px) {
+            .content-wrapper {
+                flex-direction: column;
+                padding: 0 1.5rem;
+            }
+            
+            .sidebar {
+                max-width: 100%;
+            }
+            
+            .video-title {
+                font-size: 2.3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-header {
+                padding: 1rem 1.5rem;
+            }
+            
+            .search-container {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            
+            .search-input, .filter-select {
+                width: 100%;
+            }
+            
+            .video-card {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .thumbnail-placeholder {
+                width: 150px;
+                height: 84px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .top-nav {
+                padding: 0.75rem 1rem;
+            }
+            
+            .logo {
+                font-size: 1.6rem;
+            }
+            
+            .nav-menu {
+                display: none; /* Можно добавить бургер-меню */
+            }
+            
+            .video-title {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .site-footer {
+                padding: 2rem 1rem;
+            }
+            
+            .footer-navs {
+                flex-direction: column;
+                gap: 2rem;
+            }
+            
+            .video-wrapper video {
+                max-width: 100%;
+            }
+        }
+
+        /* =========================================
+           ANIMATIONS & EFFECTS
+           ========================================= */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-section h1, .sidebar-title, .section-heading {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+
+        /* Loading Animation for Video */
+        @keyframes videoLoad {
+            from { opacity: 0.5; }
+            to { opacity: 1; }
+        }
+
+        .video-wrapper video {
+            animation: videoLoad 0.6s ease forwards;
+        }
+    </style>
 </head>
 <body>
     <!-- Preloader -->
@@ -68,7 +930,6 @@
                     <video 
                         id="mainVideo" 
                         controls 
-                        <!-- ИСПРАВЛЕНИЕ: вместо несуществующего poster.jpg используем прозрачный плейсхолдер -->
                         poster="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='640' height='360'%3E%3Crect width='640' height='360' fill='%23000'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='white' font-size='20'%3EЖЁТСКОЕ ПОРНО%3C/text%3E%3C/svg%3E"
                         preload="auto"
                         autoplay
@@ -139,42 +1000,42 @@
                     </div>
                 </div>
 
-                <!-- Related Videos Section -->
+                <!-- Related Videos Section (обновлено с data-атрибутами) -->
                 <section class="related-videos">
                     <h2 class="section-heading">Похожие видео 🔥</h2>
                     
-                    <article class="video-card">
+                    <article class="video-card" data-video="porno1.mp4" data-title="🔥 Рикролл #1 — Never Gonna Give You Up">
                         <div class="thumbnail-placeholder">🎬</div>
                         <div class="card-content">
-                            <h3 class="card-title">Related Video 1 — Premium Quality</h3>
-                            <p class="card-meta">HD • 5:42 • 340K просмотров</p>
+                            <h3 class="card-title">🔥 Рикролл #1 — Never Gonna Give You Up</h3>
+                            <p class="card-meta">HD • 3:32 • 1.2B просмотров</p>
                             <div class="card-actions">
                                 <button class="btn btn-small">▶️ Смотреть</button>
-                                <span class="views-badge">👁️ 340K</span>
+                                <span class="views-badge">👁️ 1.2B</span>
                             </div>
                         </div>
                     </article>
 
-                    <article class="video-card">
+                    <article class="video-card" data-video="porno2.mp4" data-title="🎵 Рикролл #2 — Together Forever">
                         <div class="thumbnail-placeholder">🎬</div>
                         <div class="card-content">
-                            <h3 class="card-title">Related Video 2 — Ultra HD Experience</h3>
-                            <p class="card-meta">4K • 8:15 • 290K просмотров</p>
+                            <h3 class="card-title">🎵 Рикролл #2 — Together Forever</h3>
+                            <p class="card-meta">4K • 4:15 • 890M просмотров</p>
                             <div class="card-actions">
                                 <button class="btn btn-small">▶️ Смотреть</button>
-                                <span class="views-badge">👁️ 290K</span>
+                                <span class="views-badge">👁️ 890M</span>
                             </div>
                         </div>
                     </article>
 
-                    <article class="video-card">
+                    <article class="video-card" data-video="porno3.mp4" data-title="🕺 Рикролл #3 — Ultimate Rick Astley">
                         <div class="thumbnail-placeholder">🎬</div>
                         <div class="card-content">
-                            <h3 class="card-title">Related Video 3 — Premium Selection</h3>
-                            <p class="card-meta">HD • 12:05 • 450K просмотров</p>
+                            <h3 class="card-title">🕺 Рикролл #3 — Ultimate Rick Astley</h3>
+                            <p class="card-meta">FullHD • 5:00 • 650M просмотров</p>
                             <div class="card-actions">
                                 <button class="btn btn-small">▶️ Смотреть</button>
-                                <span class="views-badge">👁️ 450K</span>
+                                <span class="views-badge">👁️ 650M</span>
                             </div>
                         </div>
                     </article>
@@ -339,27 +1200,490 @@
 
     </footer>
 
-    <!-- JavaScript -->
-    <script src="scripts.js"></script>
-    
-    <!-- ИСПРАВЛЕНИЕ: гарантированное скрытие прелоадера -->
+    <!-- JavaScript (встроенный, полный) -->
     <script>
-        (function() {
-            var preloader = document.getElementById('preloader');
-            if (!preloader) return;
+        document.addEventListener('DOMContentLoaded', () => {
+            // =========================================
+            // VIDEO PLAYER CONTROLS
+            // =========================================
+            const video = document.getElementById('mainVideo');
+            const playBtn = document.getElementById('playBtn');
+            const progressBar = document.getElementById('progressBar');
+            const timeDisplay = document.getElementById('timeDisplay');
 
-            // Скрываем прелоадер после полной загрузки страницы (включая изображения, стили и т.д.)
-            window.addEventListener('load', function() {
-                preloader.style.display = 'none';
+            // Auto-play on load (with muted fallback)
+            if (video && video.readyState >= 2) {
+                try {
+                    video.play();
+                    console.log('✅ Видео запустилось с звуком! 🔊');
+                } catch (error) {
+                    video.muted = true;
+                    video.play();
+                    console.log('⚠️ Автозапуск отключён браузером. Звук включён вручную.');
+                    
+                    // Show welcome toast notification
+                    showToast('🎬 ЖЁТСКОЕ ПОРНО — Видео играет!');
+                }
+            }
+
+            // Play/Pause Toggle
+            playBtn.addEventListener('click', () => {
+                if (video.paused || video.ended) {
+                    video.play();
+                    playBtn.textContent = '⏸️';
+                } else {
+                    video.pause();
+                    playBtn.textContent = '▶️';
+                }
             });
 
-            // Страховочный таймаут: если событие load по какой-то причине не сработало,
-            // прелоадер исчезнет через 5 секунд
-            setTimeout(function() {
-                if (preloader.style.display !== 'none') {
-                    preloader.style.display = 'none';
+            // Update Progress Bar & Time Display
+            video.addEventListener('timeupdate', () => {
+                if (video.duration) {
+                    const progressPercent = (video.currentTime / video.duration) * 100;
+                    progressBar.style.width = `${progressPercent}%`;
+                    
+                    timeDisplay.textContent = `⏱️ ${formatTime(video.currentTime)} / ${formatTime(video.duration)}`;
                 }
-            }, 5000);
+            });
+
+            // Format Time Helper
+            function formatTime(seconds) {
+                const mins = Math.floor(seconds / 60);
+                const secs = Math.floor(seconds % 60);
+                return `${mins}:${secs.toString().padStart(2, '0')}`;
+            }
+
+            // =========================================
+            // SEARCH FORM SUBMISSION
+            // =========================================
+            document.getElementById('searchForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const query = e.target.querySelector('.search-input').value.trim();
+                
+                if (query) {
+                    showToast(`🔍 Поиск: "${query}"`);
+                    
+                    // Simulate search filter effect
+                    document.querySelectorAll('.video-card, .popular-item').forEach(item => {
+                        item.style.opacity = '0.5';
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                        }, 300);
+                    });
+                } else {
+                    e.target.querySelector('.search-input').focus();
+                }
+            });
+
+            // =========================================
+            // SUBSCRIBE FORM SUBMISSION
+            // =========================================
+            document.getElementById('subscribeForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = e.target.querySelector('.subscribe-input').value.trim();
+                
+                if (email) {
+                    showToast(`🔔 Вы подписались: ${email}`);
+                    e.target.reset();
+                    
+                    // Add to list of subscribers (simulated)
+                    const subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
+                    subscribers.push(email);
+                    localStorage.setItem('subscribers', JSON.stringify(subscribers));
+                } else {
+                    e.target.querySelector('.subscribe-input').focus();
+                }
+            });
+
+            // =========================================
+            // NEWSLETTER FORM SUBMISSION
+            // =========================================
+            document.getElementById('newsletterForm').addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = e.target.querySelector('.newsletter-input').value.trim();
+                
+                if (email) {
+                    showToast(`📧 Подписка на рассылку: ${email}`);
+                    e.target.reset();
+                } else {
+                    e.target.querySelector('.newsletter-input').focus();
+                }
+            });
+
+            // =========================================
+            // USER DROPDOWN TOGGLE
+            // =========================================
+            const userDropdown = document.getElementById('userDropdown');
+            
+            // Toggle dropdown on click (simulated)
+            document.addEventListener('click', (e) => {
+                if (!userDropdown.contains(e.target)) {
+                    userDropdown.classList.remove('show');
+                }
+            });
+
+            // =========================================
+            // QUALITY SELECTOR CHANGE
+            // =========================================
+            const qualitySelect = document.getElementById('qualitySelect');
+            
+            qualitySelect.addEventListener('change', (e) => {
+                const quality = e.target.value;
+                
+                if (video) {
+                    video.src = `porno.mp4?quality=${quality}`;
+                    showToast(`📺 Качество: ${quality.toUpperCase()}`);
+                    
+                    // Simulate loading new quality
+                    video.style.opacity = '0.5';
+                    setTimeout(() => {
+                        video.style.opacity = '1';
+                    }, 300);
+                }
+            });
+
+            // =========================================
+            // SUBTITLES TOGGLE (Simulated)
+            // =========================================
+            const subtitleBtn = document.getElementById('subtitleBtn');
+            
+            let subtitlesEnabled = false;
+            
+            subtitleBtn.addEventListener('click', () => {
+                subtitlesEnabled = !subtitlesEnabled;
+                
+                if (video) {
+                    video.style.color = subtitlesEnabled ? '#ff6b00' : 'inherit';
+                    
+                    // Add track element dynamically (simulated)
+                    const track = document.createElement('track');
+                    track.setAttribute('kind', 'captions');
+                    track.setAttribute('srclang', 'ru');
+                    track.setAttribute('label', 'Русские субтитры');
+                    track.setAttribute('default', 'true');
+                    
+                    if (subtitlesEnabled) {
+                        video.appendChild(track);
+                        showToast('📝 Субтитры включены!');
+                    } else {
+                        video.removeChild(track);
+                        showToast('📝 Субтитры выключены');
+                    }
+                }
+            });
+
+            // =========================================
+            // THEME TOGGLE (Dark/Light - Simulated)
+            // =========================================
+            const themeToggle = document.getElementById('themeToggle');
+            
+            let isDarkMode = true;
+            
+            themeToggle.addEventListener('click', () => {
+                isDarkMode = !isDarkMode;
+                
+                if (isDarkMode) {
+                    themeToggle.textContent = '🌙';
+                    document.body.style.backgroundColor = '#0a0a0a';
+                    showToast('🌙 Тёмная тема активна');
+                } else {
+                    themeToggle.textContent = '☀️';
+                    document.body.style.backgroundColor = '#f5f5f5';
+                    document.body.style.color = '#333';
+                    showToast('☀️ Светлая тема активна');
+                    
+                    // Adjust text colors for light mode
+                    const headings = document.querySelectorAll('.video-title, .section-heading, .sidebar-title');
+                    headings.forEach(h => {
+                        h.style.color = '#ff6b00';
+                    });
+                }
+            });
+
+            // =========================================
+            // TOAST NOTIFICATION SYSTEM
+            // =========================================
+            function showToast(message) {
+                const toast = document.createElement('div');
+                
+                toast.textContent = message;
+                toast.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    left: 50%;
+                    transform: translateX(-50%) translateY(-100px);
+                    background: linear-gradient(135deg, #ff6b00 0%, #cc5200 100%);
+                    color: white;
+                    padding: 1rem 2rem;
+                    border-radius: 8px;
+                    font-size: 1.1rem;
+                    z-index: 9999;
+                    box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+                    transition: transform 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+                `;
+                
+                document.body.appendChild(toast);
+                
+                // Trigger animation
+                requestAnimationFrame(() => {
+                    toast.style.transform = 'translateX(-50%) translateY(0)';
+                });
+                
+                // Remove after 3 seconds
+                setTimeout(() => {
+                    toast.style.transform = 'translateX(-50%) translateY(-100px)';
+                    setTimeout(() => toast.remove(), 500);
+                }, 3000);
+            }
+
+            // =========================================
+            // VIDEO HOVER EFFECTS
+            // =========================================
+            video.addEventListener('mouseenter', () => {
+                video.style.transform = 'scale(1.02)';
+            });
+
+            video.addEventListener('mouseleave', () => {
+                video.style.transform = 'scale(1)';
+            });
+
+            // =========================================
+            // PRELOADER ANIMATION (ИСПРАВЛЕНО!)
+            // =========================================
+            const preloader = document.getElementById('preloader');
+            
+            setTimeout(() => {
+                preloader.classList.add('hidden');
+                
+                // Fade out completely after animation — УБРАЛИ display:none
+                setTimeout(() => {
+                    preloader.style.opacity = '0';
+                    preloader.style.visibility = 'hidden';
+                    // Не удаляем из DOM, чтобы не ломать анимации
+                }, 500);
+            }, 1500);
+
+            // =========================================
+            // POPULAR LIST INTERACTION (Heart Animation)
+            // =========================================
+            const popularItems = document.querySelectorAll('.popular-item');
+            
+            popularItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    showToast(`❤️ Вы выбрали: ${item.querySelector('a').textContent}`);
+                    
+                    // Heart animation effect
+                    const heart = document.createElement('span');
+                    heart.textContent = '❤️';
+                    heart.style.cssText = `
+                        position: absolute;
+                        left: 10px;
+                        top: -20px;
+                        font-size: 1.5rem;
+                        animation: floatUp 1s ease forwards;
+                    `;
+                    
+                    item.style.position = 'relative';
+                    item.appendChild(heart);
+                    
+                    // Add keyframes for floating heart (inline)
+                    const style = document.createElement('style');
+                    style.textContent = `
+                        @keyframes floatUp {
+                            0% { transform: translateY(0); opacity: 1; }
+                            100% { transform: translateY(-40px); opacity: 0; }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                });
+            });
+
+            // =========================================
+            // RELATED VIDEOS INTERACTION (ПЕРЕКЛЮЧЕНИЕ ВИДЕО)
+            // =========================================
+            const videoCards = document.querySelectorAll('.video-card');
+            
+            videoCards.forEach(card => {
+                card.addEventListener('click', () => {
+                    const videoFile = card.getAttribute('data-video');
+                    const videoTitle = card.getAttribute('data-title') || card.querySelector('.card-title').textContent;
+                    
+                    if (!videoFile || !video) return;
+                    
+                    // Меняем источник основного видео
+                    video.src = videoFile;
+                    video.load();  // перезагружаем видео с новым src
+                    video.play().catch(() => {
+                        video.muted = true;
+                        video.play();
+                    });
+                    
+                    // Обновляем заголовок плеера
+                    const mainTitle = document.querySelector('.video-title');
+                    if (mainTitle) {
+                        mainTitle.textContent = `🔥 Сейчас играет: ${videoTitle}`;
+                    }
+                    
+                    // Показываем уведомление
+                    showToast(`▶️ Запущен: ${videoTitle}`);
+                    
+                    // Визуальный эффект на карточке
+                    card.style.transform = 'scale(1.05)';
+                    setTimeout(() => {
+                        card.style.transform = '';
+                    }, 300);
+                });
+            });
+
+            // =========================================
+            // CATEGORY FILTERS (Simulated)
+            // =========================================
+            const categoryLinks = document.querySelectorAll('.sidebar a');
+            
+            categoryLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    showToast(`📂 Категория: ${link.textContent}`);
+                    
+                    // Filter effect on related videos
+                    videoCards.forEach(card => {
+                        card.style.opacity = '0.3';
+                        
+                        setTimeout(() => {
+                            card.style.opacity = '1';
+                            
+                            // Random highlight
+                            if (Math.random() > 0.5) {
+                                card.style.boxShadow = `0 15px 40px rgba(255, 107, 0, ${0.3 + Math.random()*0.3})`;
+                                setTimeout(() => {
+                                    card.style.boxShadow = '';
+                                }, 800);
+                            }
+                        }, 300);
+                    });
+                });
+            });
+
+            // =========================================
+            // BUTTON INTERACTION (Heart Animation)
+            // =========================================
+            const heartBtn = document.querySelector('.btn-primary');
+            
+            let isLiked = false;
+            
+            heartBtn.addEventListener('click', () => {
+                isLiked = !isLiked;
+                
+                if (heartBtn) {
+                    heartBtn.textContent = isLiked ? '❤️' : '🤍';
+                    
+                    // Heart animation
+                    const heart = document.createElement('span');
+                    heart.textContent = isLiked ? '❤️' : '';
+                    heart.style.cssText = `
+                        position: absolute;
+                        left: 20px;
+                        top: -15px;
+                        font-size: 1.8rem;
+                        animation: floatUp 1s ease forwards;
+                    `;
+                    
+                    const style = document.createElement('style');
+                    style.textContent = `
+                        @keyframes floatUp {
+                            0% { transform: translateY(0); opacity: 1; }
+                            100% { transform: translateY(-40px) scale(1.5); opacity: 0; }
+                        }
+                    `;
+                    document.head.appendChild(style);
+                    
+                    heartBtn.style.position = 'relative';
+                    heartBtn.appendChild(heart);
+                }
+                
+                showToast(isLiked ? '❤️ Добавлено в избранное!' : '🤍 Убрано из избранного');
+            });
+
+            // =========================================
+            // FOOTER SOCIAL ICONS (Hover Effects)
+            // =========================================
+            const socialIcons = document.querySelectorAll('.social-icons a');
+            
+            socialIcons.forEach(icon => {
+                icon.addEventListener('mouseenter', () => {
+                    icon.style.transform = 'scale(1.3) rotate(20deg)';
+                });
+
+                icon.addEventListener('mouseleave', () => {
+                    icon.style.transform = 'scale(1) rotate(0deg)';
+                });
+            });
+
+            // =========================================
+            // CONSOLE LOGS (For Debugging)
+            // =========================================
+            console.log('%c 🎬 ЖЁТСКОЕ ПОРНО — Загружено Успешно!', 
+                'background: linear-gradient(135deg, #ff6b00 0%, #cc5200 100%); color: white; padding: 1rem; border-radius: 8px;'
+            );
+
+            console.log('%c 📺 Видео готово к просмотру!', 
+                'background: #1a1a1a; color: #ff6b00; padding: 0.5rem 1rem; border-radius: 4px;'
+            );
+        });
+
+        // =========================================
+        // GLOBAL KEYBOARD SHORTCUTS (Optional)
+        // =========================================
+        document.addEventListener('keydown', (e) => {
+            const video = document.getElementById('mainVideo');
+            const playBtn = document.getElementById('playBtn');
+            
+            // Spacebar to pause/play
+            if (e.code === 'Space' && video) {
+                e.preventDefault();
+                
+                if (video.paused || video.ended) {
+                    video.play();
+                    if (playBtn) playBtn.textContent = '⏸️';
+                } else {
+                    video.pause();
+                    if (playBtn) playBtn.textContent = '▶️';
+                }
+            }
+
+            // F to fullscreen (simulated)
+            if (e.code === 'KeyF' && video) {
+                e.preventDefault();
+                
+                const isFullscreen = document.fullscreenElement;
+                
+                if (!isFullscreen) {
+                    document.documentElement.requestFullscreen().then(() => {
+                        // showToast('⛶ Полноэкранный режим!');
+                    });
+                } else {
+                    document.exitFullscreen().then(() => {
+                        // showToast('📺 Нормальный режим!');
+                    });
+                }
+            }
+
+            // M to mute/unmute (simulated)
+            if (e.code === 'KeyM' && video) {
+                e.preventDefault();
+                
+                video.muted = !video.muted;
+            }
+        });
+
+        // =========================================
+        // LOCAL STORAGE (Persist Subscribers)
+        // =========================================
+        (function() {
+            const subscribers = JSON.parse(localStorage.getItem('subscribers') || '[]');
+            if (subscribers.length > 0) {
+                console.log(`📝 ${subscribers.length} подписчиков в базе!`);
+            }
         })();
     </script>
 </body>
