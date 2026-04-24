@@ -245,16 +245,18 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     // =========================================
-    // PRELOADER ANIMATION
+    // PRELOADER ANIMATION (ИСПРАВЛЕНО!)
     // =========================================
     const preloader = document.getElementById('preloader');
     
     setTimeout(() => {
         preloader.classList.add('hidden');
         
-        // Fade out completely after animation
+        // Fade out completely after animation — УБРАЛИ display:none
         setTimeout(() => {
-            preloader.style.display = 'none';
+            preloader.style.opacity = '0';
+            preloader.style.visibility = 'hidden';
+            // Не удаляем из DOM, чтобы не ломать анимации
         }, 500);
     }, 1500);
 
