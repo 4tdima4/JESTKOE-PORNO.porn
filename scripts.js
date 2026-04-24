@@ -4,11 +4,38 @@ document.addEventListener('DOMContentLoaded', () => {
     const progressBar = document.getElementById('progressBar');
     const timeDisplay = document.getElementById('timeDisplay');
 
-    // Auto-play on load (muted for autoplay policy)
+    // ✅ АВТОЗАПУСК С ЗВУКОМ (если браузер разрешит)
     if (video && video.readyState >= 2) {
-        video.play().catch(() => {
-            console.log('Автозапуск отключён браузером. Нажмите Play вручную.');
-        });
+        try {
+            video.play();
+            console.log('✅ Видео запустилось с звуком! 🔊');
+        } catch (error) {
+            // Если автозапуск заблокирован — ставим muted
+            video.muted = true;
+            video.play();
+            console.log('⚠️ Автозапуск отключён браузером. Звук включён вручную.');
+            
+            // Показываем уведомление (можно заменить на alert или toast)
+            setTimeout(() => {
+                const msg = document.createElement('div');
+                msg.textContent = '🔊 Видео запустилось с звуком!';
+                msg.style.cssText = `
+                    position: fixed;
+                    top: 20px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                    background: #ff004c;
+                    color: white;
+                    padding: 1rem 2rem;
+                    border-radius: 8px;
+                    font-size: 1.1rem;
+                    z-index: 9999;
+                `;
+                document.body.appendChild(msg);
+                
+                setTimeout(() => msg.remove(), 3000);
+            }, 500);
+        }
     }
 
     // Play/Pause Toggle
@@ -46,7 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (query) {
             alert(`Вы ищете: "${query}" 🔍`);
-            // Здесь можно добавить поиск по API или фильтровать видео
         } else {
             e.target.querySelector('.search-input').focus();
         }
@@ -65,17 +91,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    // Auto-Play on Enter Key in Search
-    document.querySelectorAll('input[type="text"]').forEach(input => {
-        input.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                const query = input.value.trim();
-                alert(`Вы ищете: "${query}" 🔍`);
-            }
-        });
-    });
-
     // Video Hover Preview Effect
     video.addEventListener('mouseenter', () => {
         video.style.transform = 'scale(1.02)';
@@ -87,9 +102,4 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Console Log for Debugging
     console.log('🎬 ЖЁТСКОЕ ПОРНО Загружено Успешно!');
-    
-    // Show Welcome Message
-    setTimeout(() => {
-        alert('Добро пожаловать на ЖЁТСКОЕ ПОРНО! 🎉');
-    }, 1500);
 });
